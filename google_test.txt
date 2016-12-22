@@ -1,0 +1,14 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Variables ***
+${Browser}        chrome
+${Server}         https://www.google.fi/
+${painike}        name=btnI    # Kokeilen onneani -painike
+
+*** Test Cases ***
+Google search
+    open browser    ${Server}    ${Browser}
+    maximize browser window
+    Click element    ${painike}
+    close browser
