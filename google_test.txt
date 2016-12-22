@@ -1,5 +1,5 @@
 *** Settings ***
-Library           Selenium2Library
+Library    Selenium2Library
 
 *** Variables ***
 ${Browser}        chrome
@@ -14,11 +14,11 @@ Google search
 
 *** Keywords ***
 Launch browser	
-    Open browser    ${Server}    ${Browser}
+    Open Browser    ${Server}    ${Browser}
     maximize browser window
 
 Try my luck
     Click element    ${painike}
 
 shutdown browser
-    Close browser
+    Close Browser
