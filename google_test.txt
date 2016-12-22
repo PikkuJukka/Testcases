@@ -9,8 +9,8 @@ ${painike}        name=btnI    # Kokeilen onneani -painike
 *** Test Cases ***
 Google search
     Launch browser
-    try my luck
-    Close browser
+    Try my luck
+    shutdown browser
 
 *** Keywords ***
 Launch browser	
@@ -20,5 +20,5 @@ Launch browser
 Try my luck
     Click element    ${painike}
 
-Close browser
+shutdown browser
     Close browser
