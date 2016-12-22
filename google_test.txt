@@ -8,7 +8,17 @@ ${painike}        name=btnI    # Kokeilen onneani -painike
 
 *** Test Cases ***
 Google search
-    open browser    ${Server}    ${Browser}
+    Launch browser
+    try my luck
+    Close browser
+
+*** Keywords ***
+Launch browser	
+    Open browser    ${Server}    ${Browser}
     maximize browser window
+
+Try my luck
     Click element    ${painike}
-    close browser
+
+Close browser
+    Close browser
