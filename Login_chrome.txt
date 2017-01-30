@@ -1,0 +1,49 @@
+﻿*** Settings ***
+Suite Teardown
+Test Timeout
+Library           Selenium2Library
+
+*** Variables ***
+${UserNamefield}    id=email-field    # Login username field
+${Passwordfield}    id=pwd-field    # Login password field
+${LoginButton}    id=login-button    # Login button
+${Container}      id=user-tab
+${Browser}        chrome
+${Server}         http://212.68.8.54/rc
+${InvalidPW}      454464
+${ValidPW}        Password2
+${notification}    Sisäänkirjautuminen epäonnistui!
+${logoutdropdown}    id=profile
+${logoutbutton}    id=logoutButton
+
+*** Test Cases ***
+Valid user login
+    [Documentation]    Login test:
+    ...
+    ...    1. Open browser
+    ...    2. Enter "noemail@sensire.fi" in the email-field
+    ...    3. Enter "Password2" to pwd-field
+    ...    4. Click on "Login" -button
+    ...    5. Wait until page content is loaded
+    ...    6. Close browser
+    Open browser    ${Server}    ${Browser}
+    Maximize browser window
+    Wait until element is visible    ${LoginButton}
+    Input text    ${UserNamefield}    noemail@sensire.fi
+    Input text    ${Passwordfield}    ${ValidPW}
+    Click element    ${LoginButton}
+    Wait until element is visible    ${Container}
+    click element    ${logoutdropdown}
+    click element    ${logoutbutton}
+    wait until page contains    Olet kirjautunut ulos
+    close browser
+
+Invalid user login
+    [Timeout]
+    open browser    ${Server}    ${Browser}
+    maximize browser window
+    input text    ${UserNamefield}    noemail@sensire.fi
+    input text    ${Passwordfield}    ${InvalidPW}
+    click element    ${LoginButton}
+    wait until page contains    ${notification}
+    close browser
